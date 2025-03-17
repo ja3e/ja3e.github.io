@@ -1,57 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NetworkAcademia</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="blurry-prev">
-        <img src="./assets/img1.jpg" alt="" />
-        <div class="overlay"></div>
-      </div>
+    <style>
+        /* Loader styles */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-      <div class="col site-info">
-        <nav>
-          <a href="https://ja3e.github.io/">Home</a>
-          <a href="mailto:jaehoon.yi23@imperial.ac.uk,nicolas.zhou23@imperial.ac.uk">Contact</a>
-        </nav>
-        <div class="header">
-          <h1>NetworkAcademia</h1>
-        </div>
-        <div class="copy">
-          <p>
-              NetworkAcademia is dedicated to bridging the gap between undergraduate students and the academic research community. Our mission is to facilitate meaningful connections that provide students with invaluable research opportunities, mentorship, and guidance, fostering the next generation of innovators and scholars.
-          </p>
-        </div>
-      </div>
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #000000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
 
-      <div class="col project-preview">
-        <div class="project-details">
-          <div class="title"><h1>Webscraping</h1></div>
-          <div class="info">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-          <div class="credits"><p>Implementation</p></div>
-          <div class="director"><p>Language: Python</p></div>
-          <div class="cinematographer"><p>Framework: abcd</p></div>
-        </div>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
 
-        <div class="project-img">
-          <img src="./assets/img1.jpg" alt="" />
-        </div>
-      </div>
-
-      <div class="gallery-wrapper">
-        <div class="gallery"></div>
-      </div>
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
     </div>
+
+    <div class="container">
+        <div class="blurry-prev">
+            <img src="./assets/img1.jpg" alt="" />
+            <div class="overlay"></div>
+        </div>
+
+        <div class="col site-info">
+            <nav>
+                <a href="https://ja3e.github.io/">Home</a>
+                <a href="mailto:jaehoon.yi23@imperial.ac.uk,nicolas.zhou23@imperial.ac.uk">Contact</a>
+            </nav>
+            <div class="header">
+                <h1>NetworkAcademia</h1>
+            </div>
+            <div class="copy">
+                <p>
+                    NetworkAcademia is dedicated to bridging the gap between undergraduate students and the academic research community. Our mission is to facilitate meaningful connections that provide students with invaluable research opportunities, mentorship, and guidance, fostering the next generation of innovators and scholars.
+                </p>
+            </div>
+        </div>
+
+        <div class="col project-preview">
+            <div class="project-details">
+                <div class="title"><h1>Webscraping</h1></div>
+                <div class="info">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div class="credits"><p>Implementation</p></div>
+                <div class="director"><p>Language: Python</p></div>
+                <div class="cinematographer"><p>Framework: abcd</p></div>
+            </div>
+
+            <div class="project-img">
+                <img src="./assets/img1.jpg" alt="" />
+            </div>
+        </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery"></div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script type="module" src="./script.js"></script>
-  </body>
+    <script>
+      // Loader animation script
+      window.addEventListener('load', () => {
+        const tl = gsap.timeline();
+        tl.to(".loader", {
+          opacity: 0,
+          duration: 0.5,
+          delay: 1,
+          ease: "power2.inOut"
+        })
+        .set(".loader", { display: "none" })
+        .fromTo(".container",
+          { opacity: 0 },
+          { opacity: 1, duration: 0.5 }
+        );
+      });
+    </script>
+    <script type="module" src="./script.js">
+    </script>
+</body>
 </html>
